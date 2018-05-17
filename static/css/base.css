@@ -1,0 +1,31 @@
+body{
+    background: #F3F3F3;
+}
+
+.navbar-brand{
+    padding: 5px;
+    padding-right: 5px;
+}
+
+.logo{
+    height: 2px;
+}
+.body-container{
+    width: 600px;
+    background: white;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+h3{
+    text-align: center;
+    padding-top: 30px;
+}
+
+.form{
+    width: 400px;
+    margin: 0 auto;
+}
+
+form.form > div{
+    padding: 8px;
+}
