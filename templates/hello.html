@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block static_files %}
+<link rel="stylesheet" href="{{ url_for('static',filename='css/hello.css') }}"/>
+{% endblock %}
+
+{% block page_name %}首页{% endblock %}
+
+{% block body_part %}
+<ul>
+
+{% for question in questions %}
+    <h4>{{ loop.index }}</h4>
+   <li>
+
+        <div class="question-group">
+            <p class="question-title"><a href="#">{{ question.title }}</a></p>
+            <p class="question-content">{{ question.content }}</p>
+            <p class="question-info">
+                <span class="question-author">{{ question.author.username }}</span>
+                <span class="question-time">{{ question.create_time }}</span>
+            </p>
+        </div>
+    </li>
+{% endfor %}
+
+</ul>
+{% endblock %}
