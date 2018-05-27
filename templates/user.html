@@ -1,50 +1,29 @@
-{% extends "layout.html" %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>profile</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-{% block body %}
-{# missing #}
-method: {{method}} <br>
-title: {{ title }} <br>
-va: {{ va }} <br>
-url: {{ url }}<br>
-path: {{ path }}<br>
-res: {{ res }}<br>
-<em>Profile</em> : {{ uid }}<br>
-{% for i in range(0,5) %}
-    profile :{{ i }}<br>
-{% endfor %}
-<br>
-<br>
-{% for color in colors -%}
-{{ loop.index }}<br> color:{{ color }}<br>
-{%- endfor %}
-
-{% for key,value in dict.items() %}
-<li>
-<br> key:  {{ key }}<br>
-{% if value >'2.00000' -%}
-    value: {{ value }}<br>
-{% else %}
-    trash!
-{%- endif %}
-</li>
-{%endfor%}
-
-{% macro input(name, value='', type='text', size=20) -%}
-    <input type="{{ type }}" name="{{ name }}" value="{{
-        value|e }}" size="{{ size }}">
-{%- endmacro %}
-<p>{{ input('username') }}</p>
-<p>{{ input('password', type='password') }}</p>
-
-
-<br>
+{% block static_files %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/user.css') }}"/>
 {% endblock %}
-</body>
-</html>
+
+{% block page_name %}首页{% endblock %}
+
+{% block body_part %}
+<ul>
+
+
+
+
+    <div class="basic-infos">
+        <h4>用户名：{{ user.username }}</h4>
+        <h4>创建时间：{{ user.register_time }}</h4>
+        <h4>发布问答数：{{ user.questions | length }}</h4>
+        <h4>发布评论数：{{ user.comments | length }}</h4>
+    </div>
+    <div class="functions-container">
+        <div class="change-passwd">
+            <button type="submit" class="btn btn-primary btn-block" onclick="location='{{ url_for('security') }}'">
+                修改密码
+            </button>
+        </div>
+    </div>
+</ul>
+{% endblock %}

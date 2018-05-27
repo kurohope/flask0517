@@ -25,3 +25,16 @@ def validate(username, password1, password2=None):
                 return '密码错误'
         else:
             return '用户名不存在'
+
+def validate1(username, password1, password2):
+    user = Users.query.filter(Users.username == username).first()
+    if user:
+        if user.password == password1:
+           if password1 != password2:
+                 return '修改成功'
+           else:
+               return '两次密码相同'
+        else:
+           return '密码错误'
+    else:
+        return '用户名不存在'

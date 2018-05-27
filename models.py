@@ -45,5 +45,28 @@ class Comments(db.Model):
     author_id = db.Column(db.Integer, db.ForeignKey('users_info.id'))
     create_time = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
+    def __init__(self, *args, **kwargs):
+        self.id = kwargs.get('id')
+        self.content = kwargs.get('content')
+        self.question_id = kwargs.get('question_id')
+        self.author_id = kwargs.get('author_id')
+        self.create_time = kwargs.get('create_time')
+
     author = db.relationship('Users', backref=db.backref('comments'))
     question = db.relationship('Questions', backref=db.backref('comments', order_by=create_time.desc()))
+
+class MySession(db.Model):
+    __tablename__ = 'sessions'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+
+    s_id = db.Column(db.String(24), nullable=False)
+    username = db.Column(db.String(64), nullable=False)
+    start_time = db.Column(db.DateTime, nullable=False)
+    expire_time = db.Column(db.DateTime, nullable=False)
+
+    def __init__(self, *args, **kwargs):
+        self.id = kwargs.get('id')
+        self.s_id = kwargs.get('s_id')
+        self.username = kwargs.get('username')
+        self.start_time = kwargs.get('start_time')
+        self.expire_time = kwargs.get('expire_time')
